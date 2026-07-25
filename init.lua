@@ -1,5 +1,6 @@
 require "keymaps"
 require "sets"
+require "colors"
 
 require "plugins.vim-fugitive"
 require "plugins.gitsigns"

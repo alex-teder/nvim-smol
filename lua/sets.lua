@@ -30,4 +30,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.g.omni_sql_default_compl_type = "syntax"
 
+vim.cmd('colorscheme catppuccin')
+
 require("vim._core.ui2").enable()

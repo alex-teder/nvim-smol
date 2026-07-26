@@ -11,5 +11,6 @@ require "plugins.nvim-tree"
 require "plugins.mason"
 
 require "modules.toggle-transparent-bg"
+require "modules.osc52"
 
 vim.lsp.enable('vtsls')

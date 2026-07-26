@@ -4,6 +4,13 @@ vim.o.autocomplete = true
 vim.o.complete = 'o,.,w,b,u'
 vim.o.completeopt = 'menu,menuone,popup,noinsert,noselect'
 
+vim.keymap.set('i', '<CR>', function()
+  if vim.fn.pumvisible() == 1 and vim.fn.complete_info({ 'selected' }).selected == -1 then
+    return '<C-e><CR>'
+  end
+  return '<CR>'
+end, { expr = true })
+
 vim.o.pumheight = 10
 vim.o.pumborder = "rounded"
 

@@ -33,20 +33,3 @@ vim.g.omni_sql_default_compl_type = "syntax"
 vim.cmd('colorscheme catppuccin')
 
 require("vim._core.ui2").enable()
-
-vim.diagnostic.config({ virtual_text = true, severity_sort = true })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(ev)
-		vim.keymap.set("n", "<leader><space>", function()
-			vim.diagnostic.open_float({ source = true, border = "rounded" })
-		end, { silent = true, buffer = ev.buf })
-
-    vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover({ border = "rounded" })
-		end, { silent = true, buffer = true })
-
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true, buffer = ev.buf })
-		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { silent = true, buffer = ev.buf })
-	end,
-})

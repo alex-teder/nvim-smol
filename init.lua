@@ -11,6 +11,7 @@ require "plugins.nvim-tree"
 require "plugins.mason"
 require "plugins.cloak"
 require "plugins.conform"
+require "plugins.nvim-lint"
 
 require "modules.toggle-transparent-bg"
 require "modules.osc52"

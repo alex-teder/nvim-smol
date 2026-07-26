@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = {
   debounce_ms = 50,
-  ignore_injections = false,  -- detect calls in injected languages too
+  ignore_injections = false, -- detect calls in injected languages too
   max_ancestor_depth = 20,
   -- override/extend per-language arglist node types, e.g.:
   -- node_type_overrides = { python = { 'arguments' } },
@@ -24,7 +24,7 @@ local function resolve_arglist_type(lang)
   local result
   if ok and info and info.symbols then
     for _, name in ipairs(ARGLIST_CANDIDATES) do
-      if info.symbols[name] == true then  -- named node
+      if info.symbols[name] == true then -- named node
         result = name
         break
       end
@@ -81,7 +81,7 @@ function M.show()
     timer = nil
     vim.lsp.buf.signature_help({
       silent = true,
-      close_events = {},  -- manage lifecycle via TS
+      close_events = {}, -- manage lifecycle via TS
       focus = false,
       anchor_bias = 'above'
     })
@@ -92,7 +92,9 @@ function M.on_cursor_moved_i()
   if M.in_call_args(0) then
     M.show()
   else
-    if timer then timer:close(); timer = nil end
+    if timer then
+      timer:close(); timer = nil
+    end
     M.close_float()
   end
 end
@@ -104,8 +106,10 @@ function M.setup(opts)
     callback = function(ev)
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
       if not client
-        or not client.server_capabilities.signatureHelpProvider
-      then return end
+          or not client.server_capabilities.signatureHelpProvider
+      then
+        return
+      end
 
       vim.api.nvim_create_autocmd({ 'CursorMovedI', 'InsertEnter' }, {
         buffer = ev.buf,

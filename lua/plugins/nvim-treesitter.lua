@@ -4,7 +4,7 @@ vim.pack.add({
 
 require('nvim-treesitter').setup({})
 
-require('nvim-treesitter').install { 
+require('nvim-treesitter').install {
   "json",
   "javascript",
   "typescript",

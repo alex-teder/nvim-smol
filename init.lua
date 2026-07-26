@@ -9,6 +9,7 @@ require "plugins.indent-blankline"
 require "plugins.nvim-treesitter"
 require "plugins.nvim-tree"
 require "plugins.mason"
+require "plugins.cloak"
 
 require "modules.toggle-transparent-bg"
 require "modules.osc52"

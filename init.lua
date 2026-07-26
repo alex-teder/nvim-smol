@@ -25,7 +25,9 @@ vim.cmd.packadd("nvim.undotree")
 local lsps = {
   'vtsls',
   'lua-language-server',
-  'oxlint'
+  'oxlint',
+  'css-lsp',
+  'html-lsp',
 }
 
 local tools = {

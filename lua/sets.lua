@@ -27,7 +27,13 @@ opt.foldlevelstart = 99
 vim.o.winborder = "rounded"
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function() vim.hl.hl_op() end,
+  callback = function()
+    if vim.hl.hl_op then
+      vim.hl.hl_op()
+    else
+      vim.highlight.on_yank()
+    end
+  end,
 })
 
 vim.g.omni_sql_default_compl_type = "syntax"

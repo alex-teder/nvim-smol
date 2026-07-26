@@ -14,4 +14,7 @@ require "plugins.cloak"
 require "modules.toggle-transparent-bg"
 require "modules.osc52"
 
+vim.cmd.packadd("nvim.undotree")
+
 vim.lsp.enable('vtsls')
+vim.lsp.enable('lua-language-server')

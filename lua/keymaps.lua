@@ -18,5 +18,3 @@ keymap.set("n", "g5", ":tabn 5<CR>", { noremap = true, silent = true })
 
 keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end, { noremap = true, silent = true })
 keymap.set("n", "<leader>dN", function() vim.diagnostic.jump({ count = -1 }) end, { noremap = true, silent = true })
-
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")

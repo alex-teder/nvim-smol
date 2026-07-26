@@ -14,6 +14,7 @@ require "plugins.conform"
 require "plugins.nvim-lint"
 require "plugins.lualine"
 require "plugins.telescope"
+require "plugins.lorem"
 -- TODO: harpoon, AI, markdown, more lsps
 
 require "modules.toggle-transparent-bg"

@@ -11,7 +11,7 @@ local _open_floating_preview = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
   opts            = opts or {}
   opts.border     = opts.border or 'rounded'
-  opts.max_width  = opts.max_width or 80
+  opts.max_width  = opts.max_width or 90
   opts.max_height = opts.max_height or 12
   return _open_floating_preview(contents, syntax, opts, ...)
 end

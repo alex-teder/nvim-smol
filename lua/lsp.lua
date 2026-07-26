@@ -49,4 +49,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-require "lsp-sig-auto"
+require "modules.lsp-sig-auto"

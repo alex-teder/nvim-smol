@@ -112,4 +112,5 @@ vim.keymap.set("n", "<leader>fr", handle_open("lsp_references"), { noremap = tru
 vim.keymap.set("n", "<leader>cb", handle_open("registers"), { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>re", builtin.resume, { noremap = true, silent = true })
 
+-- TODO: fix this
 require('telescope').load_extension('fzf')

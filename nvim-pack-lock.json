@@ -8,6 +8,10 @@
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
+    "mason.nvim": {
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
     "nvim-tree.lua": {
       "rev": "4213bd6eabac38b16dd6615002b6243b23cf3bf6",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"

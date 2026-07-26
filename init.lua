@@ -10,4 +10,6 @@ require "plugins.nvim-treesitter"
 require "plugins.nvim-tree"
 require "plugins.mason"
 
+require "modules.toggle-transparent-bg"
+
 vim.lsp.enable('vtsls')

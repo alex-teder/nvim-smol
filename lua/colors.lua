@@ -11,8 +11,6 @@ local mocha = {
 }
 
 if vim.g.colors_name == 'catppuccin' then 
-  vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
-  vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'NONE' })
   vim.api.nvim_set_hl(0, '@variable', { fg = mocha.text })
   vim.api.nvim_set_hl(0, '@variable.parameter', { fg = mocha.red })
   vim.api.nvim_set_hl(0, '@variable.member', { fg = mocha.lavender })

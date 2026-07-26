@@ -21,13 +21,22 @@ vim.cmd.packadd("nvim.undotree")
 local lsps = {
   'vtsls',
   'lua-language-server',
+  'oxlint'
+}
+
+local tools = {
   'prettierd',
   'oxfmt',
   'eslint_d',
-  'oxlint'
 }
+
 for _, s in ipairs(lsps) do
   vim.lsp.enable(s)
 end
 
-require("mason-tool-installer").setup { ensure_installed = lsps, auto_update = true }
+require("mason-tool-installer").setup {
+  ensure_installed =
+      vim.list_extend(lsps, tools)
+  ,
+  auto_update = true
+}

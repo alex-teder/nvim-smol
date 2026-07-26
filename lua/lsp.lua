@@ -1,5 +1,37 @@
 vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 
+local signs = {
+  [vim.diagnostic.severity.ERROR] = "󰅚 ",
+  [vim.diagnostic.severity.WARN]  = " ",
+  [vim.diagnostic.severity.HINT]  = " ",
+  [vim.diagnostic.severity.INFO]  = " ",
+}
+
+local hl_map = {
+  [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+  [vim.diagnostic.severity.WARN]  = 'DiagnosticSignWarn',
+  [vim.diagnostic.severity.HINT]  = 'DiagnosticSignHint',
+  [vim.diagnostic.severity.INFO]  = 'DiagnosticSignInfo',
+}
+
+vim.diagnostic.config({
+  signs = {
+    text = signs,
+  },
+  status = {
+    format = function(severity_counts)
+      local items = {}
+      for severity in ipairs(vim.diagnostic.severity) do
+        local count = severity_counts[severity] or 0
+        if count ~= 0 then
+          table.insert(items, ("%%#%s#[%s%s]"):format(hl_map[severity], signs[severity], count))
+        end
+      end
+      return table.concat(items)
+    end
+  }
+})
+
 vim.o.autocomplete = true
 vim.o.complete = 'o,.,w,b,u'
 vim.o.completeopt = 'menu,menuone,popup,noinsert,noselect'

@@ -12,6 +12,7 @@ require "plugins.mason"
 require "plugins.cloak"
 require "plugins.conform"
 require "plugins.nvim-lint"
+require "plugins.lualine"
 
 require "modules.toggle-transparent-bg"
 require "modules.osc52"

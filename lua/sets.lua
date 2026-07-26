@@ -24,6 +24,8 @@ opt.foldmethod = "indent"
 opt.foldenable = false
 opt.foldlevelstart = 99
 
+vim.o.winborder = "rounded"
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.hl_op() end,
 })

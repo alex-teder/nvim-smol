@@ -5,6 +5,16 @@ vim.o.complete = 'o,.,w,b,u'
 vim.o.completeopt = 'menu,menuone,popup,noinsert,noselect'
 
 vim.o.pumheight = 20
+vim.o.pumborder = "rounded"
+
+local _open_floating_preview = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or 'rounded'
+  opts.max_width  = opts.max_width  or 80
+  opts.max_height = opts.max_height or 12
+  return _open_floating_preview(contents, syntax, opts, ...)
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -40,88 +50,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 require "lsp-sig-auto"
-
--- vim.api.nvim_create_autocmd('LspAttach', {
---   group = vim.api.nvim_create_augroup('LspSigAuto', {}),
---   callback = function(ev)
---     local client = vim.lsp.get_client_by_id(ev.data.client_id)
---     local provider = client
---       and client.server_capabilities.signatureHelpProvider
---     if not provider then return end
---
---     local triggers = {}
---     for _, c in ipairs(provider.triggerCharacters or {}) do triggers[c] = true end
---     for _, c in ipairs(provider.retriggerCharacters or {}) do triggers[c] = true end
---
---     vim.api.nvim_create_autocmd('InsertCharPre', {
---       buffer = ev.buf,
---       callback = function()
---         if triggers[vim.v.char] then
---           vim.schedule(function()
---             vim.lsp.buf.signature_help({ 
---               silent = true,
---               anchor_bias = 'above'
---             })
---           end)
---         end
---       end,
---     })
---
---     vim.api.nvim_create_autocmd('InsertLeave', {
---       buffer = ev.buf,
---       callback = function()
---         for _, w in ipairs(vim.api.nvim_list_wins()) do
---           if vim.w[w]['textDocument/signatureHelp'] then
---             pcall(vim.api.nvim_win_close, w, true)
---           end
---         end
---       end,
---     })
---   end,
--- })
-
--- vim.api.nvim_create_autocmd('LspAttach', {
---   group = vim.api.nvim_create_augroup('LspSigAuto', {}),
---   callback = function(ev)
---     local client = vim.lsp.get_client_by_id(ev.data.client_id)
---     local provider = client
---       and client.server_capabilities.signatureHelpProvider
---     if not provider then return end
---
---     local triggers = {}
---     for _, c in ipairs(provider.triggerCharacters or {})  do triggers[c] = true end
---     for _, c in ipairs(provider.retriggerCharacters or {}) do triggers[c] = true end
---     triggers[')'] = true  -- close on closing paren
---
---     local function close_sig_float()
---       for _, w in ipairs(vim.api.nvim_list_wins()) do
---         if vim.w[w]['textDocument/signatureHelp'] then
---           pcall(vim.api.nvim_win_close, w, true)
---         end
---       end
---     end
---
---     vim.api.nvim_create_autocmd('InsertCharPre', {
---       buffer = ev.buf,
---       callback = function()
---         local ch = vim.v.char
---         if not triggers[ch] then return end
---         if ch == ')' then
---           close_sig_float()
---         else
---           vim.schedule(function()
---             vim.lsp.buf.signature_help({
---               silent = true,
---               close_events = {},  -- don't dismiss on typing
---             })
---           end)
---         end
---       end,
---     })
---
---     vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufLeave', 'WinLeave' }, {
---       buffer = ev.buf,
---       callback = close_sig_float,
---     })
---   end,
--- })

@@ -17,24 +17,8 @@ require("nvim-tree").setup({
       { buffer = bufnr, noremap = true, silent = true, nowait = true }
     )
 
-    -- vim.keymap.set("n", "<leader>fg", function()
-    --   local node = api.tree.get_node_under_cursor()
-    --   local dir_path
-    --
-    --   if node.type == "directory" then
-    --     dir_path = node.absolute_path
-    --   else
-    --     -- If it's a file, get its parent directory
-    --     dir_path = vim.fn.fnamemodify(node.absolute_path, ":h")
-    --   end
-    --
-    --   -- Open Telescope live_grep in the selected directory
-    --   vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = C.green })
-    --   require("telescope.builtin").live_grep({
-    --     cwd = dir_path,
-    --     prompt_title = "grep: " .. dir_path .. "/",
-    --   })
-    -- end, { buffer = bufnr, noremap = true, silent = true })
+    local live_grep_from_nvim_tree = require("modules.live-grep-from-nvim-tree")
+    vim.keymap.set("n", "<leader>fg", live_grep_from_nvim_tree, { buffer = bufnr, noremap = true, silent = true })
   end,
 
   view = {

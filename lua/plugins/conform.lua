@@ -8,7 +8,6 @@ require("conform").setup {
     lsp_format = "fallback",
   },
   formatters_by_ft = {
-    lua = { "stylua" },
     javascript = formatters,
     typescript = formatters,
     javascriptreact = formatters,

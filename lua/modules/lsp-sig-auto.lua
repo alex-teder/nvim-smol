@@ -75,6 +75,34 @@ end
 
 local timer = nil
 
+local function opposite_pum_bias()
+  -- If the popup menu is actually visible, mirror its real placement.
+  local pos = vim.fn.pum_getpos()
+  if pos and pos.row ~= nil and pos.height ~= nil and pos.height > 0 then
+    local cursor_row = vim.fn.winline() - 1
+    local pum_top = pos.row
+    local pum_bottom = pos.row + pos.height - 1
+    if pum_bottom < cursor_row then
+      return 'below' -- pum is above us -> go below
+    elseif pum_top > cursor_row then
+      return 'above' -- pum is below us -> go above
+    end
+  end
+
+  -- Pum not visible: mirror its *placement heuristic*
+  -- (src/nvim/popupmenu.c:137-138).
+  local pum_win_row      = vim.fn.winline() - 1
+  local below_row        = vim.fn.winheight(0)
+  local border           = 0
+  local pum_height       = vim.o.pumheight > 0 and vim.o.pumheight or 15
+
+  local not_enough_below = pum_win_row + 2 + border >= below_row - pum_height
+  local more_above       = pum_win_row > below_row / 2
+
+  local pum_above        = not_enough_below and more_above
+  return pum_above and 'below' or 'above'
+end
+
 function M.show()
   if timer then timer:close() end
   timer = vim.defer_fn(function()
@@ -83,7 +111,7 @@ function M.show()
       silent = true,
       close_events = {}, -- manage lifecycle via TS
       focus = false,
-      anchor_bias = 'above'
+      anchor_bias = opposite_pum_bias(),
     })
   end, M.opts.debounce_ms)
 end

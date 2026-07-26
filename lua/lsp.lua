@@ -4,7 +4,7 @@ vim.o.autocomplete = true
 vim.o.complete = 'o,.,w,b,u'
 vim.o.completeopt = 'menu,menuone,popup,noinsert,noselect'
 
-vim.o.pumheight = 20
+vim.o.pumheight = 10
 vim.o.pumborder = "rounded"
 
 local _open_floating_preview = vim.lsp.util.open_floating_preview

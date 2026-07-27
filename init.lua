@@ -19,6 +19,7 @@ require "plugins.lorem"
 
 require "modules.toggle-transparent-bg"
 require "modules.osc52"
+require "modules.agent-copy"
 
 vim.cmd.packadd("nvim.undotree")
 

@@ -17,7 +17,14 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'branch' },
+    lualine_b = {
+      {
+        'branch',
+        fmt = function(name)
+          return #name > 20 and name:sub(1, 19) .. '…' or name
+        end,
+      },
+    },
     lualine_c = {
       { "diff",        color = { bg = 'NONE' }, },
       { "diagnostics", color = { bg = 'NONE' } },

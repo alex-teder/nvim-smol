@@ -29,6 +29,7 @@ local lsps = {
   'oxlint',
   'css-lsp',
   'html-lsp',
+  'json-lsp',
 }
 
 local tools = {

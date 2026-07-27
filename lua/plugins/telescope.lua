@@ -6,6 +6,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
       local obj = vim.system({ 'make' }, { cwd = ev.data.path }):wait()
       if obj.code ~= 0 then
         vim.notify('Build failed: ' .. obj.stderr, vim.log.levels.ERROR)
+      else
+        require('telescope').load_extension('fzf')
       end
     end
   end,
@@ -111,6 +113,3 @@ vim.keymap.set("n", "<leader>fh", handle_open("help_tags"), { noremap = true, si
 vim.keymap.set("n", "<leader>fr", handle_open("lsp_references"), { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>cb", handle_open("registers"), { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>re", builtin.resume, { noremap = true, silent = true })
-
--- TODO: fix this
-require('telescope').load_extension('fzf')

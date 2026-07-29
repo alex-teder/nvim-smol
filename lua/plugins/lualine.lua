@@ -19,10 +19,10 @@ require('lualine').setup {
     lualine_a = { 'mode' },
     lualine_b = {
       {
-        'branch',
-        fmt = function(name)
-          return #name > 20 and name:sub(1, 19) .. '…' or name
-        end,
+        -- 'branch',
+        -- fmt = function(name)
+        --   return #name > 20 and name:sub(1, 19) .. '…' or name
+        -- end,
       },
     },
     lualine_c = {
@@ -41,7 +41,11 @@ require('lualine').setup {
         on_click = function() vim.cmd("checkhealth lsp") end
       }
     },
-    lualine_y = { 'filetype' },
-    lualine_z = { 'location' },
+    lualine_y = {
+      -- 'filetype'
+    },
+    lualine_z = {
+      -- 'location'
+    },
   },
 }

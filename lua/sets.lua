@@ -4,10 +4,13 @@ opt.nu = true
 opt.rnu = true
 
 opt.tabstop = 2
+opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 
 opt.wrap = false
+opt.smartindent = true
+opt.inccommand = "split"
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -19,6 +22,9 @@ opt.signcolumn = "yes"
 
 opt.swapfile = false
 opt.writebackup = false
+
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 opt.foldmethod = "indent"
 opt.foldenable = false

@@ -12,5 +12,6 @@ require("copilot").setup({
   nes = { enabled = false },
   filetypes = {
     gitcommit = true,
+    markdown = true,
   },
 })

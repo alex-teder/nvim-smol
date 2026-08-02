@@ -49,6 +49,8 @@ local function agent_copy()
   local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
   local context = string.format("@%s\n<file-context>\n%s\n</file-context>", path, table.concat(lines, "\n"))
 
+  -- Let Neovim emit its normal yank feedback before replacing the register contents.
+  vim.cmd.normal({ args = { '"+y' }, bang = true })
   vim.fn.setreg("+", context)
 end
 

@@ -16,7 +16,7 @@ require "plugins.lualine"
 require "plugins.telescope"
 require "plugins.lorem"
 require "plugins.harpoon"
--- TODO: AI, markdown, more lsps
+require "plugins.copilot"
 
 require "modules.toggle-transparent-bg"
 require "modules.osc52"

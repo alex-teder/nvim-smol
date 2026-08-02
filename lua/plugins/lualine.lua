@@ -37,8 +37,28 @@ require('lualine').setup {
         color = { bg = 'NONE' },
         icon = '🔧',
         symbols = { spinner = { "💭" }, done = "👍" },
-        ignore_lsp = { "Augment Server" },
-        on_click = function() vim.cmd("checkhealth lsp") end
+        ignore_lsp = { "Augment Server", "copilot" },
+        on_click = function() vim.cmd("checkhealth lsp") end,
+      },
+      {
+        function()
+          local authenticated = require('copilot.auth').is_authenticated()
+          if not authenticated then
+            return ""
+          end
+          local enabled = not require('copilot.client').is_disabled()
+          return enabled and "🤖" or "💀"
+        end,
+        color = { bg = 'NONE' },
+        padding = "none",
+        on_click = function()
+          local enabled = not require('copilot.client').is_disabled()
+          if enabled then
+            vim.cmd("Copilot disable")
+          else
+            vim.cmd("Copilot enable")
+          end
+        end
       }
     },
     lualine_y = {

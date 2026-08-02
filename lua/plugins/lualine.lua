@@ -13,7 +13,7 @@ require('lualine').setup {
     section_separators = '',
     component_separators = '',
     globalstatus = true,
-    theme = theme
+    theme = theme,
   },
   sections = {
     lualine_a = { 'mode' },
@@ -48,6 +48,9 @@ require('lualine').setup {
           end
           local enabled = not require('copilot.client').is_disabled()
           return enabled and "🤖" or "💀"
+        end,
+        cond = function()
+          return vim.bo.filetype ~= "NvimTree" and vim.bo.filetype ~= "fugitive"
         end,
         color = { bg = 'NONE' },
         padding = "none",

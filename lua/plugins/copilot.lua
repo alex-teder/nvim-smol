@@ -10,4 +10,7 @@ require("copilot").setup({
   },
   panel = { enabled = false },
   nes = { enabled = false },
+  filetypes = {
+    gitcommit = true,
+  },
 })

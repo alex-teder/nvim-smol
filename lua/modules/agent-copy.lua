@@ -47,7 +47,11 @@ local function agent_copy()
     )
   end
   local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
-  local context = string.format("@%s\n<file-context>\n%s\n</file-context>", path, table.concat(lines, "\n"))
+  local anchor = start_pos[1] == end_pos[1] and string.format("#L%d", start_pos[1])
+    or string.format("#L%d-%d", start_pos[1], end_pos[1])
+  local context = string.format(
+    "@%s%s\n<file-context>\n%s\n</file-context>", path, anchor, table.concat(lines, "\n")
+  )
 
   -- Let Neovim emit its normal yank feedback before replacing the register contents.
   vim.cmd.normal({ args = { '"+y' }, bang = true })

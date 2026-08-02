@@ -8,6 +8,15 @@ theme.replace.c.bg = 'NONE'
 theme.command.c.bg = 'NONE'
 theme.inactive.c.bg = 'NONE'
 
+local function copilot()
+  local authenticated = require('copilot.auth').is_authenticated()
+  if not authenticated then
+    return ""
+  end
+  local enabled = not require('copilot.client').is_disabled()
+  return enabled and "🤖" or "💀"
+end
+
 require('lualine').setup {
   options = {
     section_separators = '',
@@ -41,16 +50,10 @@ require('lualine').setup {
         on_click = function() vim.cmd("checkhealth lsp") end,
       },
       {
-        function()
-          local authenticated = require('copilot.auth').is_authenticated()
-          if not authenticated then
-            return ""
-          end
-          local enabled = not require('copilot.client').is_disabled()
-          return enabled and "🤖" or "💀"
-        end,
+        copilot,
         cond = function()
-          return vim.bo.filetype ~= "NvimTree" and vim.bo.filetype ~= "fugitive"
+          return vim.bo.filetype ~= "NvimTree"
+              and vim.bo.filetype ~= "fugitive"
         end,
         color = { bg = 'NONE' },
         padding = "none",

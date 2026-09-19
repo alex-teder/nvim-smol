@@ -68,10 +68,12 @@ require('lualine').setup {
       }
     },
     lualine_y = {
-      -- 'filetype'
+      {
+        'location',
+        color = { bg = 'NONE' },
+        padding = "none",
+      }
     },
-    lualine_z = {
-      -- 'location'
-    },
+    lualine_z = {},
   },
 }

@@ -23,6 +23,7 @@ require('nvim-treesitter').install {
   "vimdoc",
   "c",
   "python",
+  "sql",
 }
 
 vim.api.nvim_create_autocmd('FileType', {
